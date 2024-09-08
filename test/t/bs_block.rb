@@ -532,3 +532,27 @@ assert('BS Block 39') do
     }
   end
 end
+
+assert('BS Block 40') do
+  def iter
+    yield(1, c: 3)
+  end
+
+  assert_equal([1, 2, 3, 4]) do
+    iter{|a, b=2, c:, d: 4|
+      [a, b, c, d]
+    }
+  end
+end
+
+assert('BS Block 41') do
+  def iter(&block)
+    block.call(1, c: 3)
+  end
+
+  assert_equal([1, 2, 3, 4]) do
+    iter{|a, b=2, c:, d: 4|
+      [a, b, c, d]
+    }
+  end
+end
